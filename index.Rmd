@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Missing Data And Imputation"
+author: "Gabriel Rivera-Alvarez | Dillon Salas | Armon Darville"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
