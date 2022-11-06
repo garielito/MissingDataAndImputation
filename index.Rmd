@@ -5,5 +5,37 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Hi peeps
+# Introduction
 
+## Statement of Problem
+
+Missing data is a widespread problem faced by analysts and statisticians. Data is becoming more integrated into our society and decision-making process. Real world data is usually incomplete with missing data. Original solutions such as listwise deletion or univariate imputation of the mean create bais and inaccurate results. Methods to address and understand these issues have been developed. Multiple imputation for missing data has emerged as the primary solution however, many considerations are needed for analysis. Such considerations are type of missing data, size of data, computation capabilities, and methods of imputation. The purpose of this article is to dive further into missing data considerations for analysis and different methods of imputation to address the missing data problem.
+
+## Relevance of Problem
+
+Missing data is a problem because analysis on datasets with missing data produces bias and inaccuracies. This may result in incorrect results and conclusions to make pivotal decisions. The magnitude of these decisions are hard to measure because data is used in many aspects of everyday life such as business, politics, social, etc. For this reason, the importance of missing data is critical. Because data collection, data use, and data analysis are becoming more prevalent and integrated into society over time, it is a problem of growing importance. 
+
+## Literature Review
+
+To successfully tackle the issue of missing data, we must first consider the type of missing data our dataset has. This article gives strategies to handle missing data depending on the data type such as MCAR (Missing completely at random), MAR(Missing at random), MNAR(Missing not at random). MCAR is the data missing where data points are not related to each other and probability of missing data is equal for every data point. This allows data to be unbiased and can use methods such as complete case analysis, single, and multiple imputation for valid analysis. MAR is the likelihood of a value to be missing depending on other observed variables. This leaves a bias in our dataset and for this data type multiple imputation is a valid analysis. MNAR is unequal and unknown probability to be missing for a dataset. Not only is the data missing but we cannot categorize data properly or know what data we do not have.  For this data type, sensitivity analysis should be used. [1]
+
+Multivariate imputation by chained equations (MICE) has emerged as a principled method in handling this issue. MICE approach is flexible and can handle continuous or binary variables however the assumption is missing data are missing at random (MAR). MAR says missing data value depends only on observed values and not unobserved values. It should be noted when there is less than 5% missingness, missing data is completely at random, and not dependent on observed or unobserved values, listwise deletion is acceptable. 
+ 	
+ The MICE method consists of six steps:
+ 
+1. 	Get a simple imputation like mean or median for every missing value.
+2. 	Set back to missing one of the imputed values.
+3. 	The value set to missing in Step 2 is regressed.
+4. 	The missing value is replaced with the imputed one.
+5. 	Steps 2-4 are repeated for each variable that has missing data.
+6. 	Steps 2-4 are repeated for a number of cycles, with the imputations being updated in each one.
+ 
+While MICE offers flexibility and solutions to the missing data problem, a number of complexities such as clustered and longitudinal data still present problems MICE may not be suited for. [2]
+
+Imputing a missing value means to infer those missing values using what is available in the dataset. The first method consists of doing nothing. The second method consists of replacing the missing values using mean or median. The third method consists of using the most frequent value or zero/constant value. The fourth method consists of using KNN. The fifth method consists of using Multivariate Imputation by Chained Equation (MICE). The sixth, and last method, consists of using Deep Learning. The article concludes by saying that there is no perfect way of imputing missing data because some methods will work better for certain data sets and worse in others so experimentation should be performed to see which method works best for the dataset. [3]
+
+KNN is an algorithm that is useful for matching a point with its closest k neighbors in a multi-dimensional space. It can be used for data that are continuous, discrete, ordinal and categorical which makes it particularly useful for dealing with all kinds of missing data. The assumption behind using KNN for missing values is that a point value can be approximated by the values of the points that are closest to it, based on other variables. [4]
+ 
+Many parameters are taken into consideration when using KNN. The ones mentioned in this article are the number of neighbors to look for, the aggregation method to use, normalizing the data, numeric attribute distances, categorical attribute distances, and binary attribute distances. Finally, the resource finishing giving an example using the titanic dataset. [4]
+
+Another research was conducted in 2016 to determine useful imputation strategies, including rough estimation using single imputation (mean, median, mode), regression imputation, mice, indicator method and imputation of longitudinal data. [5] However, for the purpose of our research, we will only focus on the rough estimation strategy, regression imputation and mice. Rough estimation is the most basic strategy which will replace null values with either the mean, median or mode depending on the dataset. The most important topic of this article pertaining to our research will be the combination of regression and mice. Regression is a very strong imputation method which predicts missing values by using a fitted model, however, Zhang stated that “this method increases correlation coefficients between map and lac. The variability of imputed data is underestimated. Alternatively, you can add some noises to regression by using mice function”. This is where we will explore the benefits of adding mice to regression imputation. [5]
