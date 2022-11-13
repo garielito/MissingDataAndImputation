@@ -1,0 +1,26 @@
+# Methods
+
+
+## Generating Missing Values
+
+
+
+
+## Single Imputation
+
+### Most Frequent for Categorical
+
+### Mean for Continuous
+
+
+## kNN Imputation
+
+
+
+
+## Random Forest Imputation
+
+
+
+
+## Mice Imputatuion
