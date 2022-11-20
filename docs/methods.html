@@ -66,70 +66,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -202,30 +138,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="methods" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Methods<a href="methods.html#methods" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>Visualization of the original dataset:
+<img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></li>
+</ul>
 <div id="generating-missing-values" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Generating Missing Values<a href="methods.html#generating-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before we perform the different methods of imputation for missing values.
-We must first explore the types of missing data. These being: MCAR, MAR, MNAR.
-MCAR (Missing completely at random) is the data missing where data points are not related to each other and probability of missing data is equal for every data point.
-This allows data to be unbiased and can use methods such as complete case analysis, single, and multiple imputation for valid analysis.
-MAR (Missing at random) is the likelihood of a value to be missing depends on other observed variables.
-This leaves a bias in our dataset and for this data type multiple imputation is a valid analysis.
-MNAR (Missing not at random) is unequal and unknown probability to be missing for a dataset.
-Not only is the data missing but we cannot categorize data properly or know what data we do not have.
-For this data type, sensitivity analysis should be used.
-Once missing value data type is determined some of the strategies are complete case analysis, single imputation, and multiple imputation.
-Complete case analysis drops observations with missing values from the dataset. Single imputation replaces missing values with values thought to best represent the mechanism of the missing data such as mean or median.
-Multiple imputation has several steps which summarize as imputation of multiple copies of original dataset are generated, replace missing values randomly sampled from the predictive distribution,
-fit models for each imputed dataset and perform statistical analysis on said datasets followed by pooling the results together.
-The result will contain the variability and uncertainty as if taken from a complete dataset without missing data and without introduction of bias.
-Due to the challenge of missing data having many assumptions, decisions, and methods used for analysis, it is extremely important to thoroughly report each.
-Reporting the strategy used for missing data is critical for other researchers to reproduce and validate findings.
-Report findings such as count or proportion of missing values to variable of interest, methodology used for incomplete data analysis, assumptions regarding the cause of missingness: MCAR, MAR, or MNAR,
-software used to handle missing data, changes made, etc.
-It is important to understand why and how to handle missing data.
-While multiple imputation is a preferred method to handle missing data in general, we still need to know when, why, and how.
-Detailed reporting is also needed to ensure reproducibility and validity. Methods and ideas discussed will help deal with missing data in scientific research but should be considered as an introduction to the topic.
-This report will be focused on single and multiple imputation methods.</p>
+<p>Before we perform the different methods of imputation for missing values we must first explore the types of missing data. These are: MCAR, MAR, MNAR.</p>
+<p>MCAR (Missing Completely at Random) is the data missing where data points are not related to each other and probability of missing data is equal for every data point. This allows data to be unbiased and can use methods such as complete case analysis, single, and multiple imputation for valid analysis.</p>
+<p>MAR (Missing at Random) is the likelihood of a value to be missing depends on other observed variables. This leaves a bias in our dataset and for this data type multiple imputation is a valid analysis.</p>
+<p>MNAR (Missing Not at Random) is unequal and unknown probability to be missing for a dataset. Not only is the data missing but we cannot categorize data properly or know what data we do not have. For this data type, sensitivity analysis should be used.</p>
+<p>Once missing value data type is determined some of the strategies are complete case analysis, single imputation, and multiple imputation.</p>
+<p>Complete case analysis drops observations with missing values from the dataset. Single imputation replaces missing values with values thought to best represent the mechanism of the missing data such as mean or median.</p>
+<p>Multiple imputation has several steps which summarize as imputation of multiple copies of original dataset are generated, replace missing values randomly sampled from the predictive distribution, fit models for each imputed dataset and perform statistical analysis on said datasets followed by pooling the results together. The result will contain the variability and uncertainty as if taken from a complete dataset without missing data and without introduction of bias.</p>
+<p>Due to the challenge of missing data having many assumptions, decisions, and methods used for analysis, it is extremely important to thoroughly report each. Reporting the strategy used for missing data is critical for other researchers to reproduce and validate findings. Report findings such as count or proportion of missing values to variable of interest, methodology used for incomplete data analysis, assumptions regarding the cause of missingness: MCAR, MAR, or MNAR, software used to handle missing data, changes made, etc.</p>
+<p>It is important to understand why and how to handle missing data. While multiple imputation is a preferred method to handle missing data in general, we still need to know when, why, and how. Detailed reporting is also needed to ensure reproducibility and validity.</p>
+<p>Methods and ideas discussed will help deal with missing data in scientific research but should be considered as an introduction to the topic. This report will be focused on single and multiple imputation methods.</p>
+<p>Generated NA’s for MCAR Type</p>
+<pre><code>## Warning: `gather_()` was deprecated in tidyr 1.2.0.
+## ℹ Please use `gather()` instead.
+## ℹ The deprecated feature was likely used in the visdat package.
+##   Please report the issue at &lt;]8;;https://github.com/ropensci/visdat/issueshttps://github.com/ropensci/visdat/issues]8;;&gt;.</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Generated NA’s for MAR Type
+<img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Generated NA’s for MNAR Type
+<img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="single-imputation" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Single Imputation<a href="methods.html#single-imputation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -233,18 +171,18 @@ This report will be focused on single and multiple imputation methods.</p>
 <h3><span class="header-section-number">3.2.1</span> Most Frequent for Categorical<a href="methods.html#most-frequent-for-categorical" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The next imputation method that was performed is another form of single imputation which is most frequent imputation. This method is used for categorical variables and is considered another quick and simple approach for missing values.
 This method replaces missing values with the most frequent value (mode) of the variable, with zeros or a constant pre-defined value.
-Even though this is a very easy approach, this method also does not factor correlations between variables and can intropduce bias to the dataset.</p>
+Even though this is a very easy approach, this method also does not factor correlations between variables and can introduce bias to the dataset.</p>
 </div>
 <div id="mean-for-continuous" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Mean for Continuous<a href="methods.html#mean-for-continuous" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first imputation method performed will be single impuatation but for continuous variables.
+<p>The first imputation method performed will be single imputation but for continuous variables.
 This method consists of replacing the missing values with either the mean or median for continuous variables.
 This method is a very quick and simple approach when dealing with missing values. However, it does not factor correlations between variables and does not work for categorical variables.</p>
 </div>
 </div>
 <div id="knn-imputation" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> kNN Imputation<a href="methods.html#knn-imputation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Knn was the next imputation method performed. This method makes predictions about missing values by finding the K’s closest neighbors and impute the value based on the neighborhood.
+<p>KNN was the next imputation method performed. This method makes predictions about missing values by finding the K’s closest neighbors and impute the value based on the neighborhood.
 The procedure of the algorithm consists of creating a basic mean impute to construct a KDTree. The KDTree is used to compute the nearest neighbor and then it finds the average of KNN’s.
 This method has the advantage of being more accurate, but it is computationally expensive and is very sensitive to outliers.</p>
 </div>
@@ -263,16 +201,17 @@ A drawback of this method is that when the data is not MAR could result in biase
 By default, linear regression is used to predict continuous missing values.
 Logistic regression is used for categorical missing values.
 While this method offers advantages over other methods, a primary disadvantage is that it does not have the same theoretical justification as other techniques.</p>
+<ul>
+<li>Visualization after performing KNN to the original dataset:
+<img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="bookdownproj_files/figure-html/unnamed-chunk-6-2.png" width="672" /></li>
+</ul>
 </div>
 <div id="results" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Results<a href="methods.html#results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="methods.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(data)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <div id="error" class="section level3 hasAnchor" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Error<a href="methods.html#error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="methods.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(Errors_by_Type, <span class="at">caption =</span> <span class="st">&quot;Errors by type&quot;</span>, <span class="at">filter =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-3d07cdeaaa7d27e29abe" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3d07cdeaaa7d27e29abe">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"6.66666666666667\" data-max=\"96.1538461538462\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"10.9952564737032\" data-max=\"95.6521739130435\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"7.22241268493615\" data-max=\"96.1538461538462\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"7.67860722798912\" data-max=\"84.6153846153846\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Errors by type<\/caption>","data":[["JobTitle_MCAR","Gender_MCAR","Age_MCAR","PerfEval_MCAR","Education_MCAR","Dept_MCAR","Seniority_MCAR","BasePay_MCAR","Bonus_MCAR","JobTitle_MAR","Gender_MAR","Age_MAR","PerfEval_MAR","Education_MAR","Dept_MAR","Seniority_MAR","BasePay_MAR","Bonus_MAR","JobTitle_MNAR","Gender_MNAR","Age_MNAR","PerfEval_MNAR","Education_MNAR","Dept_MNAR","Seniority_MNAR","BasePay_MNAR","Bonus_MNAR"],[95.6521739130435,55,39.4772513558563,81.8181818181818,70.5882352941177,92.3076923076923,81.25,23.4061839128212,29.354113759837,96.1538461538462,40,34.3107958632676,80,67.8571428571429,74.0740740740741,80,19.8962478012874,35.8208982298802,81.8181818181818,6.66666666666667,23.5074098746932,87.5,81.25,57.1428571428571,83.3333333333333,22.7507852806731,29.2972987062666],[95.6521739130435,60,36.2147492026078,72.7272727272727,70.5882352941177,61.5384615384615,68.75,13.5378728576028,12.4708855679781,73.0769230769231,40,31.385980551673,76,85.7142857142857,92.5925925925926,85,15.6681078059943,19.2345146436271,73.0769230769231,40,20.7764916372256,76,85.7142857142857,92.5925925925926,85,18.7166296430952,10.9952564737032],[73.9130434782609,15,21.7735520277581,27.2727272727273,70.5882352941177,69.2307692307692,62.5,12.3006598634622,8.8312322813637,96.1538461538462,32,17.5916379720638,32,64.2857142857143,85.1851851851852,85,8.71025016729996,14.6095224789182,96.1538461538462,32,12.6655466986026,32,64.2857142857143,85.1851851851852,85,9.17190977578048,7.22241268493615],[73.9130434782609,40,12.8031406352123,27.2727272727273,82.3529411764706,84.6153846153846,68.75,10.8727990467044,9.5860968613743,76.9230769230769,32,15.0401361962627,32,64.2857142857143,59.2592592592593,65,12.4359034381799,10.9666579878066,76.9230769230769,32,9.27255461636765,32,64.2857142857143,59.2592592592593,65,8.88111581855602,7.67860722798912]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>SI_Error<\/th>\n      <th>kNN_Error<\/th>\n      <th>RF_Error<\/th>\n      <th>MICE_Error<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7e6548eb1edaf96dbb76" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7e6548eb1edaf96dbb76">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"9.09090909090909\" data-max=\"90\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"11.0257790209739\" data-max=\"100\" data-scale=\"14\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"7.37303196776803\" data-max=\"91.304347826087\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"7.15272015970766\" data-max=\"81.25\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","caption":"<caption>Errors by type<\/caption>","data":[["JobTitle_MCAR","Gender_MCAR","Age_MCAR","PerfEval_MCAR","Education_MCAR","Dept_MCAR","Seniority_MCAR","BasePay_MCAR","Bonus_MCAR","JobTitle_MAR","Gender_MAR","Age_MAR","PerfEval_MAR","Education_MAR","Dept_MAR","Seniority_MAR","BasePay_MAR","Bonus_MAR","JobTitle_MNAR","Gender_MNAR","Age_MNAR","PerfEval_MNAR","Education_MNAR","Dept_MNAR","Seniority_MNAR","BasePay_MNAR","Bonus_MNAR"],[86.9565217391304,41.6666666666667,30.388497406816,76,75,81.25,85,20.2258241119631,39.2409935503089,83.8709677419355,30.4347826086957,33.3403776356229,67.8571428571429,69.2307692307692,86.3636363636364,88.8888888888889,13.7497500312307,26.0146578176414,90,9.09090909090909,28.6454100384677,73.6842105263158,80,73.0769230769231,87.5,23.5954315733153,30.5003674765361],[100,20.8333333333333,23.592798676166,48,75,81.25,60,16.156854772014,14.8839580689621,90.3225806451613,47.8260869565217,27.0320570520883,64.2857142857143,84.6153846153846,86.3636363636364,61.1111111111111,11.0257790209739,12.7157793314972,90.3225806451613,47.8260869565217,21.2820713643249,64.2857142857143,84.6153846153846,86.3636363636364,61.1111111111111,20.4177128915293,11.9848012515578],[91.304347826087,20.8333333333333,15.7655667865881,36,75,50,80,10.8800576150213,9.94988323435348,80.6451612903226,39.1304347826087,17.6140018926673,21.4285714285714,76.9230769230769,77.2727272727273,61.1111111111111,7.37303196776803,10.3735898108254,80.6451612903226,39.1304347826087,14.0151255206066,21.4285714285714,76.9230769230769,77.2727272727273,61.1111111111111,12.468879126109,8.55450282263129],[69.5652173913043,29.1666666666667,20.1612326315953,32,81.25,75,40,14.9432802816491,8.92663266198327,70.9677419354839,30.4347826086957,15.3247978819651,17.8571428571429,73.0769230769231,77.2727272727273,77.7777777777778,10.0538611254618,9.9074833536083,70.9677419354839,30.4347826086957,12.8570640395704,17.8571428571429,73.0769230769231,77.2727272727273,77.7777777777778,12.5995527736382,7.15272015970766]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>SI_Error<\/th>\n      <th>kNN_Error<\/th>\n      <th>RF_Error<\/th>\n      <th>MICE_Error<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="comparisons" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Comparisons<a href="methods.html#comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
