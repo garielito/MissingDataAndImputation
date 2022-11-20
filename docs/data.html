@@ -23,7 +23,7 @@
 <meta name="author" content="Gabriel Rivera-Alvarez | Dillon Salas | Armon Darville" />
 
 
-<meta name="date" content="2022-11-13" />
+<meta name="date" content="2022-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -93,17 +93,17 @@
 <li class="chapter" data-level="3.3" data-path="methods.html"><a href="methods.html#knn-imputation"><i class="fa fa-check"></i><b>3.3</b> kNN Imputation</a></li>
 <li class="chapter" data-level="3.4" data-path="methods.html"><a href="methods.html#random-forest-imputation"><i class="fa fa-check"></i><b>3.4</b> Random Forest Imputation</a></li>
 <li class="chapter" data-level="3.5" data-path="methods.html"><a href="methods.html#mice-imputatuion"><i class="fa fa-check"></i><b>3.5</b> Mice Imputatuion</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
+<li class="chapter" data-level="3.6" data-path="methods.html"><a href="methods.html#results"><i class="fa fa-check"></i><b>3.6</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#error"><i class="fa fa-check"></i><b>4.1</b> Error</a></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#comparisons"><i class="fa fa-check"></i><b>4.2</b> Comparisons</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#interpretation"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.6.1" data-path="methods.html"><a href="methods.html#error"><i class="fa fa-check"></i><b>3.6.1</b> Error</a></li>
+<li class="chapter" data-level="3.6.2" data-path="methods.html"><a href="methods.html#comparisons"><i class="fa fa-check"></i><b>3.6.2</b> Comparisons</a></li>
+<li class="chapter" data-level="3.6.3" data-path="methods.html"><a href="methods.html#interpretation"><i class="fa fa-check"></i><b>3.6.3</b> Interpretation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>5</b> References</a></li>
-<li class="chapter" data-level="6" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>6</b> Appendix</a>
+</ul></li>
+<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="appendix.html"><a href="appendix.html#code"><i class="fa fa-check"></i><b>6.1</b> Code</a></li>
+<li class="chapter" data-level="5.1" data-path="appendix.html"><a href="appendix.html#code"><i class="fa fa-check"></i><b>5.1</b> Code</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -126,24 +126,24 @@
             <section class="normal" id="section-">
 <div id="data" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Data<a href="data.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The dataset that we used was found on kaggle and came from Glassdoor.
-This dataset focuses on compensation and has 9 variables. This data was constructed
-in efforts to aid testing the pay gap between men and women.</p>
+<p>The dataset that we used was found on kaggle and came from Glassdoor. This dataset focuses on compensation and has 9 variables and 1000 observations.</p>
+<p>This data was constructed in efforts to aid testing the pay gap between men and women. The gender pay gap or gender wage gap is the average between the pay for men and women working. Women are generally considered to be paid less than men. Two distinct numbers regarding the pay gap are non-adjusted versus adjusted pay gap. Adjusted pay gap accounts for differences in hours worked, occupations chose, education, and job experience. Non-adjusted pay gap is salary before adjustments. For perspective, the non-adjusted average female’s annual salary is 79% of the average male’s salary, compared to the 95% for the adjusted average salary. In both cases women seem are being paid less than male counterparts.</p>
+<p>Some reasons to why this gap persists are the social, economic, and legal factors which reach past the idea of “equal pay for equal work”. A problem outside of ethics to gender pay gap is women being paid less results in women not being able to provide for themselves, loved ones, less economic output, and dependency upon government aid. This dataset aims to replicate the data used in the famous paper “The Gender Wage Gap: Extent, Trends, and Explanations”, which provides new empirical evidence on the extent of and trends in the gender wage gap, which declined considerably during the 1980–2010 period.</p>
 <div id="variables" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Variables<a href="data.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The variables in the dataset were:</p>
 <p>Job Title - which is a categorical variable consisting of Financial Analyst, Graphic Designer, Software Engineer, IT
 Warehouse Associate, Driver, Sales Associate, Data Scientist, Marketing Associate, and Manger</p>
 <p>Gender - which is a categorical variable consisting of Male and Female</p>
-<p>Age - which is a continuious variable ranging between 18 and 65 years old.</p>
-<p>Performance Evaluation - which is a categorical variable with ranked values 1,2,3,4,5 based on perfomance.
+<p>Age - which is a continuous variable ranging between 18 and 65 years old.</p>
+<p>Performance Evaluation - which is a categorical variable with ranked values 1,2,3,4,5 based on performance.
 1 being the lowest and 5 being the highest.</p>
 <p>Education - which is a categorical variable consisting of High School, College, Masters, PhD.</p>
 <p>Department - which is a categorical variable consisting of Operations, Sales, Management, Administration, Engineering</p>
-<p>Senority - which is a categorical variable with ranked values 1,2,3,4,5 based on perfomance.
+<p>Seniority - which is a categorical variable with ranked values 1,2,3,4,5 based on performance.
 1 being the lowest and 5 being the highest.</p>
-<p>Base Pay - which is a continuious variable ranging between 34.2k - 180k</p>
-<p>Bonus - which is a continuious variable ranging between 1.7k - 11.3k</p>
+<p>Base Pay - which is a continuous variable ranging between 34.2k - 180k</p>
+<p>Bonus - which is a continuous variable ranging between 1.7k - 11.3k</p>
 
 </div>
 </div>

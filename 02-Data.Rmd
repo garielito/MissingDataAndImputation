@@ -1,10 +1,14 @@
 # Data
 
-The dataset that we used was found on kaggle and came from Glassdoor. 
-This dataset focuses on compensation and has 9 variables. This data was constructed
-in efforts to aid testing the pay gap between men and women.
+The dataset that we used was found on kaggle and came from Glassdoor. This dataset focuses on compensation and has 9 variables and 1000 observations.
+
+This data was constructed in efforts to aid testing the pay gap between men and women. The gender pay gap or gender wage gap is the average between the pay for men and women working. Women are generally considered to be paid less than men. Two distinct numbers regarding the pay gap are non-adjusted versus adjusted pay gap. Adjusted pay gap accounts for differences in hours worked, occupations chose, education, and job experience. Non-adjusted pay gap is salary before adjustments. For perspective, the non-adjusted average female’s annual salary is 79% of the average male’s salary, compared to the 95% for the adjusted average salary. In both cases women seem are being paid less than male counterparts.
+
+Some reasons to why this gap persists are the social, economic, and legal factors which reach past the idea of “equal pay for equal work”. A problem outside of ethics to gender pay gap is women being paid less results in women not being able to provide for themselves, loved ones, less economic output, and dependency upon government aid. This dataset aims to replicate the data used in the famous paper "The Gender Wage Gap: Extent, Trends, and Explanations", which provides new empirical evidence on the extent of and trends in the gender wage gap, which declined considerably during the 1980–2010 period.
+
 
 ## Variables
+
 The variables in the dataset were:
 
 Job Title - which is a categorical variable consisting of Financial Analyst, Graphic Designer, Software Engineer, IT
@@ -12,18 +16,18 @@ Warehouse Associate, Driver, Sales Associate, Data Scientist, Marketing Associat
 
 Gender - which is a categorical variable consisting of Male and Female
 
-Age - which is a continuious variable ranging between 18 and 65 years old.
+Age - which is a continuous variable ranging between 18 and 65 years old.
 
-Performance Evaluation - which is a categorical variable with ranked values 1,2,3,4,5 based on perfomance.
+Performance Evaluation - which is a categorical variable with ranked values 1,2,3,4,5 based on performance.
 1 being the lowest and 5 being the highest.
 
 Education - which is a categorical variable consisting of High School, College, Masters, PhD.
 
 Department - which is a categorical variable consisting of Operations, Sales, Management, Administration, Engineering
 
-Senority - which is a categorical variable with ranked values 1,2,3,4,5 based on perfomance.
+Seniority - which is a categorical variable with ranked values 1,2,3,4,5 based on performance.
 1 being the lowest and 5 being the highest.
 
-Base Pay - which is a continuious variable ranging between 34.2k - 180k
+Base Pay - which is a continuous variable ranging between 34.2k - 180k
 
-Bonus - which is a continuious variable ranging between 1.7k - 11.3k
+Bonus - which is a continuous variable ranging between 1.7k - 11.3k
