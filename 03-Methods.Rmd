@@ -936,7 +936,7 @@ Errors_by_Type
 ```
 
 - Visualization of the original dataset:
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 hist(data)
 ```
 
@@ -963,17 +963,17 @@ It is important to understand why and how to handle missing data. While multiple
 Methods and ideas discussed will help deal with missing data in scientific research but should be considered as an introduction to the topic. This report will be focused on single and multiple imputation methods.
 
 Generated NA's for MCAR Type
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 vis_miss(dataMCAR)
 ```
 
 Generated NA's for MAR Type
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 vis_miss(dataMAR)
 ```
 
 Generated NA's for MNAR Type
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 vis_miss(dataMNAR)
 ```
 
@@ -1013,9 +1013,13 @@ By default, linear regression is used to predict continuous missing values.
 Logistic regression is used for categorical missing values.
 While this method offers advantages over other methods, a primary disadvantage is that it does not have the same theoretical justification as other techniques.
 
-- Visualization after performing KNN to the original dataset:
-```{r, echo=FALSE}
+- Visualization after performing SI to the original dataset:
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 hist(dataMAR_SI)
+```
+
+- Visualization after performing MICE to the original dataset:
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 hist(dataMAR_MICE_Final)
 ```
 
@@ -1025,7 +1029,7 @@ hist(dataMAR_MICE_Final)
 
 ### Error
 
-```{r, echo=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 datatable(Errors_by_Type, caption = "Errors by type", filter = "top")
 ```
 
