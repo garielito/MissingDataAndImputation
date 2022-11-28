@@ -3,17 +3,16 @@
 ```{r, message=FALSE, warning=FALSE, include=FALSE}
 # Libraries to be used
 
-
 # Libraries to be used
 library(tidyverse)
 library(mice) # Library to generate missing values and to use MICE technique
 library(VIM) # Library to impute NAs with KNN
 library(missForest) # Library to impute NAs with random forest
 library(DT) # Library to have an interacting table
-library(naniar) # Library to show NAs and locations
 library(ggpubr) # Combine plots
 library(Hmisc) # plot hist can be used to impute too
 library(naniar) #visualization tool
+library(reshape2) # to convert data from wide to long format
 
 # Dataset Import and Initial Manipulation
 
@@ -933,6 +932,111 @@ Errors_by_Type <- rbind(JobTitle_Error[1,], Gender_Error[1,], Age_Error[1,], Per
                  
                  JobTitle_Error[3,], Gender_Error[3,], Age_Error[3,], PerfEval_Error[3,], Education_Error[3,], Dept_Error[3,], Seniority_Error[3,], BasePay_Error[3,], Bonus_Error[3,])
 Errors_by_Type
+
+# Error Visualization
+
+# Melt data frame into long format
+Errors_by_Type_Long = rownames_to_column(Errors_by_Type, "ErrorName")
+Errors_by_Type_Long <- melt(Errors_by_Type_Long, id.vars = 'ErrorName', variable.name = 'ImputationType',value.name = "ErrorPercent")
+
+Errors_by_Variable_Long = rownames_to_column(Errors_by_Variable, "ErrorName")
+Errors_by_Variable_Long <- melt(Errors_by_Variable_Long, id.vars = 'ErrorName', variable.name = 'ImputationType',value.name = "ErrorPercent")
+
+#create line plot for each column in data frame
+df = Errors_by_Variable_Long[c(1:9,28:36,55:63,82:90),]
+p1 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Overview of Errors")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("Age|BasePay|Bonus"),ErrorName))
+p2 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Continuous Variables")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("Gender"),ErrorName))
+p3 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Binary Categorical Variables")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("JobTitle|Dept"),ErrorName))
+p4 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Multinomial Categorical Variables")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("PerEval|Education|Seniority"),ErrorName))
+p5 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Ordinal Categorical Variables")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl("MCAR",ErrorName))
+p6 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison for MCAR Type of Missing Data")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl("MAR",ErrorName))
+p7 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison for MAR Type of Missing Data")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl("MNAR",ErrorName))
+p8 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison for MNAR Type of Missing Data")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("kNN_Error|RF_Error|MICE_Error"),ImputationType))
+p9 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Random Forest and MICE Imputation Methods")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("SI_Error"),ImputationType))
+p10 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  scale_fill_manual(values="#F8766D") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Single Imputation Methods")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("kNN_Error"),ImputationType))
+p11 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  scale_fill_manual(values="#7CAE00") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between kNN Imputation Methods")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("RF_Error"),ImputationType))
+p12 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  scale_fill_manual(values="#00BFC4") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between Random Forest Imputation Methods")
+
+df = dplyr::filter(Errors_by_Variable_Long, grepl(c("MICE_Error"),ImputationType))
+p13 = ggplot(df, aes(ErrorName, ErrorPercent, fill=ImputationType)) +
+  geom_bar(stat = "identity", position = "dodge2") +
+  scale_fill_manual(values="#C77CFF") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(title = "Error Comparison between MICE Imputation Methods")
 ```
 
 - Visualization of the original dataset:
@@ -1033,11 +1137,40 @@ hist(dataMAR_MICE_Final)
 datatable(Errors_by_Type, caption = "Errors by type", filter = "top")
 ```
 
-### Comparisons
+### Comparisons and Interpretation
 
+*Overview*
 
+Our overall results show we have less error for continuous data than binary, nominal, and ordinal categorical data. Our best performing imputation method is MICE and our worst performing method is single imputation. Single imputation is expected to have high error because the method itself creates inaccuracies by not addressing variability in its imputation. In larger datasets single imputation or complete case scenarios will drastically change results in analysis and should be avoided. Other imputation methods such as kNN and RF performed competitively with slightly greater error than MICE. Most of our imputation methods have been designed to handle MAR data therefore, this data type had lower error than its counterparts MCAR and MNAR.
 
+```{r, echo=FALSE}
+# Plotting Errors
+p1
+```
 
+*Error Comparison Between Data Types*
 
+Comparisons below showcase the imputation types with respect to variable types. Upper limit of errors for continuous variables is 40%, binary categorical variables is 60%, multinomial categorical variables is 100%, and ordinal categorical variables is 95%. Categorical variables error is higher because variability is based on frequency of occurrence in our data. Within larger datasets this error will drop because each miss classification has less impact on total error assuming the missing data type is MAR.
 
-### Interpretation
+```{r, echo=FALSE}
+# Plotting Errors
+ggarrange(p2,p3,p4,p5,nrow = 2, ncol = 2)
+```
+
+*Error Comparison Between Types of Missing Data*
+
+We expected for our MAR type of missing data to be the best performer in terms of least amount of error percent however, because of the smaller size of our dataset, it is not as effective as it would be for a larger dataset. Given a larger dataset the differences between our missing data types is more easily compared. The methods of imputation are designed for MAR type of missing data. MCAR missing type of data is somewhat unrealistic because you would be omitting variables without relationships to the result.
+
+```{r, echo=FALSE}
+# Plotting Errors
+ggarrange(p6,p7,p8,nrow = 2, ncol = 2)
+```
+
+*Error Comparison Between Imputation Methods*
+
+Error comparisons between imputation methods shows MICE being the overall best method of imputation across majority of variables and missing data types. Single imputation is the worst method across the variables and missing data types. Both kNN and RF imputation performed similarly with RF having an edge across variable types. For imputation methods, further considerations are needed such as size of dataset, computation cost, time, dataset variable distribution, and ease of implementation.
+
+```{r, echo=FALSE}
+# Plotting Errors
+ggarrange(p10,p11,p12,p13,nrow = 2, ncol = 2)
+```
