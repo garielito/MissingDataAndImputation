@@ -1107,15 +1107,15 @@ The next method used is Random Forest.
 This package used (missForest) is an iterative imputation method based on a random forest allows quality and flexibility utilizing built-in out-of-bag error estimates. 
 This non parametric alternative is also used on mixed types of data with ability to account for high-dimensions and different types of variables simultaneously.
 
-## Mice Imputatuion
+## MICE Imputatuion
 
 The last method used is MICE (Multivariate Imputation by Chained Equations). This method involves filling the missing values multiple times until a certain threshold is met.
 An important assumption of the MICE method is that it assumes that the missing data is Missing At Random (MAR). 
 This means that the probability that a value is missing depends only on observed values and not on unobserved values.
-A drawback of this method is that when the data is not MAR could result in biased estimates.
+A drawback occurs when the data is not MAR, it could result in biased estimates.
 By default, linear regression is used to predict continuous missing values. 
 Logistic regression is used for categorical missing values.
-While this method offers advantages over other methods, a primary disadvantage is that it does not have the same theoretical justification as other techniques.
+While MICE offers flexibility and solutions to the missing data problem, a number of complexities such as clustered and longitudinal data still present problems for which MICE may not be suited for.
 
 - Visualization after performing SI to the original dataset:
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}

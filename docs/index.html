@@ -23,7 +23,7 @@
 <meta name="author" content="Gabriel Rivera-Alvarez | Dillon Salas | Armon Darville" />
 
 
-<meta name="date" content="2022-11-13" />
+<meta name="date" content="2022-12-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,18 +92,17 @@
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="methods.html"><a href="methods.html#knn-imputation"><i class="fa fa-check"></i><b>3.3</b> kNN Imputation</a></li>
 <li class="chapter" data-level="3.4" data-path="methods.html"><a href="methods.html#random-forest-imputation"><i class="fa fa-check"></i><b>3.4</b> Random Forest Imputation</a></li>
-<li class="chapter" data-level="3.5" data-path="methods.html"><a href="methods.html#mice-imputatuion"><i class="fa fa-check"></i><b>3.5</b> Mice Imputatuion</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
+<li class="chapter" data-level="3.5" data-path="methods.html"><a href="methods.html#mice-imputatuion"><i class="fa fa-check"></i><b>3.5</b> MICE Imputatuion</a></li>
+<li class="chapter" data-level="3.6" data-path="methods.html"><a href="methods.html#results"><i class="fa fa-check"></i><b>3.6</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#error"><i class="fa fa-check"></i><b>4.1</b> Error</a></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#comparisons"><i class="fa fa-check"></i><b>4.2</b> Comparisons</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#interpretation"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.6.1" data-path="methods.html"><a href="methods.html#error"><i class="fa fa-check"></i><b>3.6.1</b> Error</a></li>
+<li class="chapter" data-level="3.6.2" data-path="methods.html"><a href="methods.html#comparisons-and-interpretation"><i class="fa fa-check"></i><b>3.6.2</b> Comparisons and Interpretation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>5</b> References</a></li>
-<li class="chapter" data-level="6" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>6</b> Appendix</a>
+</ul></li>
+<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="chapter" data-level="5" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>5</b> Appendix</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="appendix.html"><a href="appendix.html#code"><i class="fa fa-check"></i><b>6.1</b> Code</a></li>
+<li class="chapter" data-level="5.1" data-path="appendix.html"><a href="appendix.html#code"><i class="fa fa-check"></i><b>5.1</b> Code</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -127,7 +126,7 @@
 <div id="header">
 <h1 class="title">Missing Data And Imputation</h1>
 <p class="author"><em>Gabriel Rivera-Alvarez | Dillon Salas | Armon Darville</em></p>
-<p class="date"><em>2022-11-13</em></p>
+<p class="date"><em>2022-12-04</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -156,7 +155,7 @@
 <p>Imputing a missing value means to infer those missing values using what is available in the dataset. The first method consists of doing nothing. The second method consists of replacing the missing values using mean or median. The third method consists of using the most frequent value or zero/constant value. The fourth method consists of using KNN. The fifth method consists of using Multivariate Imputation by Chained Equation (MICE). The sixth, and last method, consists of using Deep Learning. The article concludes by saying that there is no perfect way of imputing missing data because some methods will work better for certain data sets and worse in others so experimentation should be performed to see which method works best for the dataset. [3]</p>
 <p>KNN is an algorithm that is useful for matching a point with its closest k neighbors in a multi-dimensional space. It can be used for data that are continuous, discrete, ordinal and categorical which makes it particularly useful for dealing with all kinds of missing data. The assumption behind using KNN for missing values is that a point value can be approximated by the values of the points that are closest to it, based on other variables. [4]</p>
 <p>Many parameters are taken into consideration when using KNN. The ones mentioned in this article are the number of neighbors to look for, the aggregation method to use, normalizing the data, numeric attribute distances, categorical attribute distances, and binary attribute distances. Finally, the resource finishing giving an example using the titanic dataset. [4]</p>
-<p>Another research was conducted in 2016 to determine useful imputation strategies, including rough estimation using single imputation (mean, median, mode), regression imputation, mice, indicator method and imputation of longitudinal data. [5] However, for the purpose of our research, we will only focus on the rough estimation strategy, regression imputation and mice. Rough estimation is the most basic strategy which will replace null values with either the mean, median or mode depending on the dataset. The most important topic of this article pertaining to our research will be the combination of regression and mice. Regression is a very strong imputation method which predicts missing values by using a fitted model, however, Zhang stated that “this method increases correlation coefficients between map and lac. The variability of imputed data is underestimated. Alternatively, you can add some noises to regression by using mice function”. This is where we will explore the benefits of adding mice to regression imputation. [5]</p>
+<p>Another research was conducted in 2016 to determine useful imputation strategies, including rough estimation using single imputation (mean, median, mode), regression imputation, MICE, indicator method and imputation of longitudinal data. [5] However, for the purpose of our research, we will only focus on the rough estimation strategy, regression imputation and MICE. Rough estimation is the most basic strategy which will replace null values with either the mean, median or mode depending on the dataset. The most important topic of this article pertaining to our research will be the combination of regression and MICE. Regression is a very strong imputation method which predicts missing values by using a fitted model, however, Zhang stated that “this method increases correlation coefficients between map and lac. The variability of imputed data is underestimated. Alternatively, you can add some noises to regression by using MICE function”. This is where we will explore the benefits of adding MICE to regression imputation. [5]</p>
 
 </div>
 </div>
